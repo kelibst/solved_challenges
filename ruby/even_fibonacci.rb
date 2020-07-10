@@ -11,7 +11,7 @@ for a0 in (0..t)
         fib << (fib[x]+ fib[x+1])
         x+=1
     end
-    print fib
+    
     even_fib= fib.select do |num|
         num.even? && num < n
     end
