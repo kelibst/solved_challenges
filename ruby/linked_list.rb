@@ -1,38 +1,55 @@
 # Start with your code from last challenge.
 
-class LinkedList
-    attr_accessor :res
-    def initialize(res = [])
-      @res = res
-    end
-    
-    def add(number)
-      @res.push(number)
-    end
-    def add_at(index, item)
-      @res.insert(index, item)
-    end
-    
-    def remove(index)
-      @res.delete_at(index);
-    end
-    
-    def get(index)
-      return @res[index];
-    end
-   
+class Node
+  attr_accessor :value, :next_node
+  
+  def initialize(value, next_node = nil)
+	  @value = value
+    @next_node = next_node
   end
+end
+
+class LinkedList
+   attr_reader :tail
+   @head = nil
+   @tail = nil
+
+   def add(num)
+      node = Node.new(num)
+
+      if @head.nil?
+        @head = node
+        @tail = node
+      else
+        @tail.next_node = node
+        @tail = node
+      end
+   end
+
+   def get(ind)
+      cur = @head
+      count = 0
+      value = nil
+
+      while cur
+        if count === ind
+          value = cur.value
+          break
+        end
+        cur = cur.next_node
+        count +=1
+      end
+      
+      value
+   end
+end
   
   list = LinkedList.new
-  
-  list.add(3)
-  list.add(5)
-  list.add_at(1, 11)
-  list.add_at(0, 13)
-  
-  puts list.get(2)
-  # => 11
-  
-  
-  puts list.get(3)
-  # => 5
+ 
+list.add(3)
+
+list.add(5)
+
+puts list.get(1)
+
+# => 5
