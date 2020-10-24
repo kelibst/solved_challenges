@@ -1,40 +1,33 @@
-# Start with your code from LinkedList challenge.
+# Start with your code from last challenge.
 
-class LinkedList
-    attr_accessor :res
-    def initialize(res = [])
-      @res = res
-    end
-    
-    def add(number)
-      @res.push(number)
-    end
-    def add_at(index, item)
-      @res.insert(index, item)
-    end
-    
-    def remove(index)
-      @res.delete_at(index);
-    end
-    
-    def get(index)
-      return @res[index];
-    end
-   @res
+class Node
+  attr_accessor :value, :next_node
+  
+  def initialize(value, next_node = nil)
+	  @value = value
+    @next_node = next_node
+  end
 end
 
-class Stack 
-  def initialize(res = [])
-    @res = res
-  end
-  def push(num)
-    @res.push(num)
-  end
-  
-  def pop
-    # your code here
-    return !@res.empty? ? @res.pop : nil
-  end
+class LinkedList
+   @head = nil
+   @tail = nil
+end
+
+
+class Stack < LinkedList
+	def push(item)
+		new_node = Node.new(item, @head)
+		@head = new_node
+		@tail = new_node if @tail.nil?
+	end
+
+	def pop
+		raise 'empty' if @head.nil?
+		value = @head.value
+		@head = @head.next_node
+		value
+	end
 end
 
 stack = Stack.new
@@ -52,4 +45,3 @@ puts stack.pop
 # => 2
 
 puts stack.pop
-# => 3
