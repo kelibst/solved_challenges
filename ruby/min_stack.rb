@@ -7,7 +7,7 @@ class Node
         @value = value
       @next_node = next_node
     end
-  end
+end
 
   
   
